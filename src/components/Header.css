@@ -1,0 +1,14 @@
+.pokedex-navbar {
+     margin-bottom: 100px;
+
+}
+    
+.image-conatiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 16px 0;
+
+}
+   
