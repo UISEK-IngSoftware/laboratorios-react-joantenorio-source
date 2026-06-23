@@ -1,16 +1,23 @@
 import Header from './components/Header'
 import './App.css'
+import { Container } from '@mui/material'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import PokemonList from './components/PokemonList'
-import { Container } from '@mui/material'  // ← falta esto
+import PokemonForm from './components/PokemonForm'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Header />
+
       <Container maxWidth="lg">
-        <PokemonList />
-      </Container>  {/* ← así se cierra */}
-    </>
+        <Routes>
+          <Route path="/" element={<PokemonList />} />
+          <Route path="/add" element={<PokemonForm />} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   )
 }
 
