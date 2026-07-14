@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
-import PokemonCard from './PokemonCard'
+import PokemonCard from '../components/PokemonCard'
 import { fetchPokemonList } from '../services/pokemonServices'
 
 export default function PokemonList() {

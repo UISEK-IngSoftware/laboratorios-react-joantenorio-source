@@ -1,22 +1,25 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-console.log("BASE_URL =", BASE_URL);
+const pokemonClient = axios.create({
+  baseURL: API_BASE_URL,
+});
 
-const apiClient = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+pokemonClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem("access_token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 export const fetchPokemonList = async () => {
-  console.log("Consultando:", `${BASE_URL}/pokemons/`);
+  const response = await pokemonClient.get("/pokemons/");
+  return response.data;
+};
 
-  const response = await apiClient.get('/pokemons/');
-
-  console.log("Respuesta:", response.data);
-
+export const createPokemon = async (pokemonData) => {
+  const response = await pokemonClient.post("/pokemons/", pokemonData);
   return response.data;
 };
